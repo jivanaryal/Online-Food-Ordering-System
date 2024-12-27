@@ -2,6 +2,8 @@ import express from "express";
 import { AppDataSource } from "./data-source";
 import customerRoutes from "./routes/customerRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
+import menuItemRoutes from "./routes/menuItemRoutes";
+import orderRoutes from "./routes/orderRoutes";
 
 const app = express();
 
@@ -9,6 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/customer", customerRoutes);
 app.use("/api/category", categoryRoutes);
+app.use("/api/menuitem", menuItemRoutes);
+app.use("/api/order", orderRoutes);
 
 // Initialize the database and start the server once the connection is established
 AppDataSource.initialize()
