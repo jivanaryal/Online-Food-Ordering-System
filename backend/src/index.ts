@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import { AppDataSource } from "./data-source";
 import customerRoutes from "./routes/customerRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
@@ -10,13 +10,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/customer", customerRoutes);
 app.use("/api/category", categoryRoutes);
 
+app.use("/", (req: Request, res: Response) => {
+  res.send("hello jivan testing routes");
+});
+
 // Initialize the database and start the server once the connection is established
 AppDataSource.initialize()
   .then(() => {
     console.log("Database connected successfully");
     // Start the server after the database connection is successful
-    app.listen(5000, () => {
-      console.log(`Server is running at port: 5000`);
+    app.listen(3000, () => {
+      console.log(`Server is running at port: 3000`);
     });
   })
   .catch((error) => {
