@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/customer", customerRoutes);
 app.use("/api/category", categoryRoutes);
 
-app.use("/", (req: Request, res: Response) => {
+app.use("/api", (req: Request, res: Response) => {
   res.send("hello jivan testing routes");
 });
 
