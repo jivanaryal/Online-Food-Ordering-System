@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
   host: "localhost",
   port: 3306,
   username: "root", // MySQL username (root for XAMPP by default)
-  password: "", // MySQL password (leave empty if none)
+  password: "password", // MySQL password (leave empty if none)
   database: "food-ordering", // Your database name
   synchronize: true, // Automatically syncs your schema (not recommended for production)
   logging: false, // Set to true for debugging
