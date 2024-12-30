@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./layout/layout";
 import Dashboard from "./main/dashboard/Dashboard";
 import Category from "./main/food-category/category";
+import CreateCategory from "./main/food-category/createCategory";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/category",
         element: <Category />,
+      },
+      {
+        path: "/category/create",
+        element: <CreateCategory />,
       },
     ],
   },
