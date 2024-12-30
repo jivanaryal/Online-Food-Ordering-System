@@ -48,9 +48,8 @@ export const deleteCustomer = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { id } = req.params; // id is a string (UUID)
+    const { id } = req.params;
 
-    // Since the id is a string (UUID), we don't need to convert it to a number
     const customer = await customerRepository.findOneBy({ id });
 
     if (customer) {

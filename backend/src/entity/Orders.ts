@@ -18,12 +18,12 @@ export class Orders {
   @ManyToOne(() => Customer, (customer) => customer.orders)
   customer: Customer;
 
-  @Column()
-  order_date: string;
+  @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+  order_date!: Date;
 
-  @ManyToMany(() => MenuItem, (menuItem) => menuItem.orders)
+  @ManyToOne(() => MenuItem, (menuItem) => menuItem.orders)
   @JoinTable()
-  menuItems: MenuItem[];
+  menuItems: MenuItem;
 
   @Column()
   total_price: number;
@@ -33,15 +33,13 @@ export class Orders {
 
   constructor(
     customer: Customer,
-    order_date: string,
-    total_price: number,
-    menuItems: MenuItem[],
-    quantity: number
+    menuItems: MenuItem,
+    quantity: number,
+    total_price: number
   ) {
     this.customer = customer;
-    this.order_date = order_date;
     this.menuItems = menuItems;
-    this.total_price = total_price;
     this.quantity = quantity;
+    this.total_price = total_price;
   }
 }

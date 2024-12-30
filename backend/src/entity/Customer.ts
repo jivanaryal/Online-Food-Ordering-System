@@ -3,8 +3,8 @@ import { Orders } from "./Orders";
 
 @Entity()
 export class Customer {
-  @PrimaryGeneratedColumn("uuid") // Generates UUID as the primary key
-  id!: string; // id will be a string representing the UUID
+  @PrimaryGeneratedColumn("uuid")
+  id!: string;
 
   @Column()
   name: string;
