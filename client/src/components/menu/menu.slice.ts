@@ -25,7 +25,7 @@ export const fetchMenuData = createAsyncThunk<Menu[]>(
   'hello',
   async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/menuitem');
+      const response = await axios.get('http://localhost:3000/api/menuitem');
       return response.data;
     } catch (error) {
         console.log(error)

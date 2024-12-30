@@ -83,9 +83,7 @@ export const updateCustomer = async (
       return;
     }
 
-    customer.name = name || customer.name;
-    customer.address = address || customer.address;
-    customer.phone = phone || customer.phone;
+    Object.assign(customer, { name, address, phone });
     await customerRepository.save(customer);
     res
       .status(200)

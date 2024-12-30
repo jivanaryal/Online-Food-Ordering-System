@@ -13,16 +13,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/customer", customerRoutes);
 app.use("/api/category", categoryRoutes);
+app.use("/api/menuitem", menuItemRoutes);
+app.use("/api/order", orderRoutes);
 
-app.use("/api", (req: Request, res: Response) => {
-  res.send("hello jivan testing routes");
-});
-
-// Initialize the database and start the server once the connection is established
 AppDataSource.initialize()
   .then(() => {
     console.log("Database connected successfully");
-    // Start the server after the database connection is successful
     app.listen(3000, () => {
       console.log(`Server is running at port: 3000`);
     });
@@ -31,13 +27,11 @@ AppDataSource.initialize()
     console.error("Error during Data Source initialization:", error);
   });
 
-// Global error handler for unhandled promise rejections
 process.on("unhandledRejection", (reason, promise) => {
   console.error("Unhandled Rejection at:", promise, "reason:", reason);
 });
 
-// Global error handler for uncaught exceptions
 process.on("uncaughtException", (error) => {
   console.error("Uncaught Exception thrown:", error);
-  process.exit(1); // Optionally exit on uncaught exception
+  process.exit(1);
 });
