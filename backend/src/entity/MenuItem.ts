@@ -3,10 +3,9 @@ import {
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
-  OneToMany,
+  ManyToMany,
 } from "typeorm";
 import { Category } from "./Category";
-import { IsString, IsNumber, Min } from "class-validator";
 import { Orders } from "./Orders"; // Import Orders entity
 
 @Entity()
@@ -14,24 +13,20 @@ export class MenuItem {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @Column({ type: "varchar" })
-  @IsString()
+  @Column()
   name: string;
 
-  @Column({ type: "bigint" })
-  @IsNumber()
-  @Min(0)
+  @Column()
   price: number;
 
-  @Column({ type: "varchar" })
-  @IsString()
+  @Column()
   description: string;
 
   @ManyToOne(() => Category, (category) => category.menuItems)
   category: Category; // Many-to-one relationship with Category
 
   // Add the reverse side of the Many-to-Many relationship with Orders
-  @OneToMany(() => Orders, (order) => order.menuItems)
+  @ManyToMany(() => Orders, (order) => order.menuItems)
   orders!: Orders[]; // Property to hold related orders
 
   constructor(
