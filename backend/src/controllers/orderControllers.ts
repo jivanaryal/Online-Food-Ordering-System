@@ -26,7 +26,7 @@ export const getAllOrders = async (
 
 export const createOrders = async (req: Request, res: Response) => {
   try {
-    const { customer, menuItems, quantity } = req.body; // Change 'menuItems' to 'menuItems'
+    const { customer, menuItems, quantity } = req.body;
 
     console.log(menuItems);
 
@@ -37,7 +37,6 @@ export const createOrders = async (req: Request, res: Response) => {
 
     const menuItemRepository = AppDataSource.getRepository(MenuItem);
 
-    // Fetch the menu item by ID (since only one item can be selected per order)
     const menuItem = await menuItemRepository.findOneBy({ id: menuItems });
 
     if (!menuItem) {
@@ -45,20 +44,16 @@ export const createOrders = async (req: Request, res: Response) => {
       return;
     }
 
-    // Calculate the total price
     const total_price = quantity * menuItem.price;
 
-    // Create the order
-    const order = new Orders(customer, menuItem, quantity, total_price); // Pass an array of one item to orders
+    const order = new Orders(customer, menuItem, quantity, total_price);
     const errors = await validate(order);
 
     if (errors.length > 0) {
-      // Respond with validation errors
       res.status(400).json({ errors: errors.map((err) => err.toString()) });
       return;
     }
 
-    // Save the order to the repository
     await orderRepository.save(order);
     res.status(200).json({ message: "Order added successfully", order });
   } catch (error) {
