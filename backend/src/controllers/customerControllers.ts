@@ -48,9 +48,8 @@ export const deleteCustomer = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { id } = req.params; // id is a string (UUID)
+    const { id } = req.params;
 
-    // Since the id is a string (UUID), we don't need to convert it to a number
     const customer = await customerRepository.findOneBy({ id });
 
     if (customer) {
@@ -83,7 +82,9 @@ export const updateCustomer = async (
       return;
     }
 
-    Object.assign(customer, { name, address, phone });
+    customer.name = name || customer.name;
+    customer.address = address || customer.address;
+    customer.phone = phone || customer.phone;
     await customerRepository.save(customer);
     res
       .status(200)

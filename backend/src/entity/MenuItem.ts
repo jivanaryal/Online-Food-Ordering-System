@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { Category } from "./Category";
 import { IsString, IsNumber, Min } from "class-validator";
-import { Orders } from "./Orders"; // Import Orders entity
+import { Orders } from "./Orders";
 
 @Entity()
 export class MenuItem {

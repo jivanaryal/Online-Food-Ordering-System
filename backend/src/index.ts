@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import { AppDataSource } from "./data-source";
 import customerRoutes from "./routes/customerRoutes";
 import categoryRoutes from "./routes/categoryRoutes";

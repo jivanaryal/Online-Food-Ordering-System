@@ -1,4 +1,3 @@
-import { error } from "console";
 import { AppDataSource } from "../data-source";
 import { Category } from "../entity/Category";
 import { Request, Response } from "express";
@@ -22,11 +21,6 @@ export const createCategory = async (
 ): Promise<void> => {
   try {
     const { name, description } = req.body;
-
-    if (!name || !description) {
-      res.status(400).json({ error: "All fields are required" });
-      return;
-    }
     const newCategory = new Category(name, description);
     await categoryRespository.save(newCategory);
     res.status(200).json({ message: "new category added", newCategory });

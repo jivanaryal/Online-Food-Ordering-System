@@ -30,7 +30,6 @@ export const createMenuItem = async (req: Request, res: Response) => {
     const menuItem = new MenuItem(name, price, description, category);
     const errors = await validate(menuItem);
     if (errors.length > 0) {
-      // Respond with validation errors
       res.status(400).json({ errors: errors.map((err) => err.toString()) });
       return;
     }
